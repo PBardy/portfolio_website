@@ -1,0 +1,55 @@
+<mat-card class="card mat-elevation-z0">
+  <mat-card-header class="card-header">
+    <mat-card-title class="card-title">
+      <span>{{ data.title }}</span>
+    </mat-card-title>
+    <ng-container *ngIf="auth.signedIn">
+      <mat-checkbox></mat-checkbox>
+    </ng-container>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <img [src]="data.thumbnail" [alt]="data.caption" mat-card-image />
+    <p class="small-text">
+      By
+      <a [href]="authorLink">
+        <span>{{ data.author.fname }} {{ data.author.lname }}</span> </a
+      >. Published
+      {{ data.created_at | date: "yyyy-mm-dd" }}
+    </p>
+    <p>{{ data.description }}</p>
+  </mat-card-content>
+  <mat-card-actions class="card-actions">
+    <button mat-button (click)="readMore()">
+      <span>Read More</span>
+    </button>
+  </mat-card-actions>
+  <mat-card-footer class="card-footer"></mat-card-footer>
+</mat-card>
+
+<!-- Hidden menu trigger -->
+<div
+  class="mat-menu-trigger"
+  [style.top.px]="menuY"
+  [style.left.px]="menuX"
+  [matMenuTriggerFor]="options"
+></div>
+
+<!-- Menus -->
+<mat-menu #options>
+  <button mat-menu-item (click)="selectArticle()">
+    <mat-icon>ads_click</mat-icon>
+    <span>{{ selected ? "Deselect" : "Select " }} Article</span>
+  </button>
+  <button mat-menu-item (click)="duplicateArticle()">
+    <mat-icon>content_copy</mat-icon>
+    <span>Duplicate Article</span>
+  </button>
+  <button mat-menu-item (click)="editArticle()">
+    <mat-icon>edit</mat-icon>
+    <span>Edit Article</span>
+  </button>
+  <button mat-menu-item (click)="deleteArticle()">
+    <mat-icon>delete</mat-icon>
+    <span>Delete Article</span>
+  </button>
+</mat-menu>

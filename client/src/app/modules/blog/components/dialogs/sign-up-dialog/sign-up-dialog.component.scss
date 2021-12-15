@@ -1,0 +1,30 @@
+@import "dialog";
+@import "material";
+
+.dialog-content form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 1rem;
+}
+
+.dialog-action-row {
+  display: flex;
+  column-gap: 1rem;
+  width: 100%;
+}
+
+.dialog-action-row p {
+  width: 100%;
+  text-align: center;
+}
+
+.dialog-action-row button {
+  flex: 1;
+}

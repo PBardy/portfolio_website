@@ -1,0 +1,35 @@
+::ng-deep .mat-card {
+  box-sizing: border-box;
+  box-shadow: 0;
+}
+
+::ng-deep .mat-card-title {
+  margin-bottom: 0;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 0;
+}
+
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  width: 100%;
+  margin-bottom: -1.25em;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .mat-card-header .mat-card-header-text {
+  margin: 0;
+  padding: 0;
+}
+
+.mat-menu-trigger {
+  position: fixed;
+  visibility: hidden;
+}

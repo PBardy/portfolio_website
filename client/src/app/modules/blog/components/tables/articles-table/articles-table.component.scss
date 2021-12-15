@@ -1,0 +1,19 @@
+.cards {
+  padding: 20px;
+}
+
+.cards-table {
+  width: 100%;
+}
+
+.article-thumbnail {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+}
+
+.article-title-container {
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+}

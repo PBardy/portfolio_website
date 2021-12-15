@@ -1,0 +1,110 @@
+<mat-drawer-container class="sidenav-container" hasBackdrop="false">
+  <mat-drawer class="sidenav" mode="side" [opened]="true">
+    <header class="sidenav-header">
+      <h3>Material Blog</h3>
+    </header>
+    <mat-divider></mat-divider>
+    <ng-container>
+      <mat-nav-list>
+        <h2 matSubheader>Creator Options</h2>
+        <mat-list-item (click)="myArticles()">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <span>My Articles</span>
+        </mat-list-item>
+        <mat-list-item (click)="addArticle()">
+          <mat-icon mat-list-icon>add</mat-icon>
+          <span>Add Article</span>
+        </mat-list-item>
+        <mat-list-item routerLink="/blog/analytics">
+          <mat-icon mat-list-icon>show_chart</mat-icon>
+          <span>Analytics</span>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+    </ng-container>
+    <mat-selection-list>
+      <h2 matSubheader>Articles</h2>
+      <mat-list-option matTooltip="Show articles publish in the last 10 days">
+        <span>Recent</span>
+      </mat-list-option>
+      <mat-list-option matTooltip="Show the 90th percentile of viewed articles">
+        <span>Popular</span>
+      </mat-list-option>
+      <mat-list-option matTooltip="Show articles with even like/dislike ratio">
+        <span>Controversial</span>
+      </mat-list-option>
+    </mat-selection-list>
+    <mat-divider></mat-divider>
+    <footer>
+      <button mat-icon-button (click)="settings()">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </footer>
+  </mat-drawer>
+  <mat-drawer-content class="sidenav-content">
+    <mat-toolbar class="toolbar">
+      <mat-toolbar-row class="toolbar-row">
+        <div class="toolbar-group">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="toolbar-group">
+          <ng-container *ngIf="authState.signedOut; else authorOptions">
+            <button mat-icon-button (click)="signIn()">
+              <mat-icon>person</mat-icon>
+            </button>
+          </ng-container>
+          <ng-template #authorOptions>
+            <button mat-icon-button (click)="addArticle()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-divider [vertical]="true"></mat-divider>
+            <button mat-icon-button (click)="signOut()">
+              <mat-icon>logout</mat-icon>
+            </button>
+          </ng-template>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <main class="main-content">
+      <section class="search-options">
+        <form>
+          <mat-form-field class="search-input" appearance="fill">
+            <mat-label>Search</mat-label>
+            <mat-icon matSuffix>search</mat-icon>
+            <input matInput type="text" autocomplete="on" />
+          </mat-form-field>
+          <mat-button-toggle-group
+            class="views"
+            [(ngModel)]="view"
+            [ngModelOptions]="viewOptions"
+          >
+            <mat-button-toggle value="GRID" matTooltip="Display in grid">
+              <mat-icon>grid_view</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="TABLE" matTooltip="Display in table">
+              <mat-icon>table_view</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="LIST" matTooltip="Display in list">
+              <mat-icon>view_list</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </form>
+      </section>
+      <ng-container *ngIf="['GRID', 'LIST'].includes(view); else tableView">
+        <section class="cards" [ngClass]="view.toLowerCase()">
+          <app-article-card
+            [data]="article"
+            [auth]="authState"
+            *ngFor="let article of articlesState.data"
+          ></app-article-card>
+        </section>
+      </ng-container>
+      <ng-template #tableView>
+        <app-articles-table [data]="articlesState.data"></app-articles-table>
+      </ng-template>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

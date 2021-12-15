@@ -1,0 +1,50 @@
+<header class="dialog-header">
+  <div class="dialog-header-group">
+    <h3>Search Everything</h3>
+  </div>
+  <div class="dialog-header-group">
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</header>
+
+<main class="dialog-content">
+  <form [formGroup]="form">
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <mat-icon matSuffix>search</mat-icon>
+        <input type="text" matInput formControlName="searchTerm" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="tags" multiple>
+          <mat-option [value]="tag.value" *ngFor="let tag of tags">
+            <span>{{ tag.label }}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="searchType" multiple>
+          <mat-option
+            [value]="searchType.value"
+            *ngFor="let searchType of searchTypes"
+          >
+            <span>{{ searchType.label }}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</main>
+
+<footer class="dialog-actions">
+  <button mat-button class="btn btn-secondary">
+    <span>Reset</span>
+  </button>
+  <button mat-button class="btn btn-primary">
+    <span>Apply Filters</span>
+  </button>
+</footer>

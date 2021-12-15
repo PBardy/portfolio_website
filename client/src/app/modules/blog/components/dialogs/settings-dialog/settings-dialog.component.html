@@ -1,0 +1,38 @@
+<header class="dialog-header">
+  <h3>Settings</h3>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</header>
+
+<main class="dialog-content">
+  <mat-tab-group class="tab-group" mat-align-tabs="center">
+    <mat-tab label="General">
+      <div class="tab-content">
+        <section class="notifications">
+          <h4>Notifications</h4>
+          <div class="setting">
+            <h5>Allow all notifications</h5>
+            <mat-slide-toggle></mat-slide-toggle>
+          </div>
+          <mat-divider></mat-divider>
+        </section>
+      </div>
+    </mat-tab>
+    <mat-tab label="Theme">
+      <div class="tab-content">
+        <div class="themes">
+          <div class="theme selected">
+            <mat-icon>light_mode</mat-icon>
+          </div>
+          <div class="theme">
+            <mat-icon>dark_mode</mat-icon>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Advanced">
+      <div class="tab-content"></div>
+    </mat-tab>
+  </mat-tab-group>
+</main>

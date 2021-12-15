@@ -1,0 +1,12 @@
+@import "dialog";
+@import "material";
+
+.dialog-content {
+  max-width: 600px;
+  padding: 1rem;
+}
+
+.dialog-content p {
+  font-size: 16px;
+  line-height: 30px;
+}

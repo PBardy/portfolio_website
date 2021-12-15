@@ -1,0 +1,45 @@
+<mat-drawer-container>
+  <mat-drawer></mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar class="toolbar">
+      <mat-toolbar-row class="toolbar-row">
+        <div class="toolbar-group">
+          <button mat-icon-button>
+            <mat-icon>home</mat-icon>
+          </button>
+          <mat-divider [vertical]="true"></mat-divider>
+        </div>
+        <div class="toolbar-group"></div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <section class="section article-header">
+      <div class="section-container">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <img [src]="article.thumbnail" alt="" />
+        <caption>
+          <span>{{ article.caption }}</span>
+        </caption>
+      </div>
+    </section>
+    <section class="section article-content">
+      <div class="section-container" [innerHTML]="article.sanitizedHtml"></div>
+    </section>
+    <section class="section article-footer">
+      <div class="section-container">
+        <div class="section-title">Acknowledgements</div>
+      </div>
+    </section>
+    <section class="section article-author">
+      <div class="section-container">
+        <h3>Author</h3>
+        <p></p>
+      </div>
+    </section>
+    <section class="section article-comments">
+      <div class="section-container">
+        <div class="section-title">Comments</div>
+      </div>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>

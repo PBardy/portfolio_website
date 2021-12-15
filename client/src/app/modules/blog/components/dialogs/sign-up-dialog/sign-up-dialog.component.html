@@ -1,0 +1,59 @@
+<header class="dialog-header">
+  <div class="header-dialog-group">
+    <h3>Sign Up</h3>
+  </div>
+  <div class="header-dialog-group">
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</header>
+
+<main class="dialog-content">
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <mat-icon matSuffix></mat-icon>
+      <input type="text" matInput formControlName="fname" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <mat-icon matSuffix></mat-icon>
+      <input type="text" matInput formControlName="lname" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <mat-icon matSuffix>email</mat-icon>
+      <input type="email" matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <mat-icon matSuffix>lock</mat-icon>
+      <input type="password" matInput formControlName="password" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Repeat Password</mat-label>
+      <mat-icon matSuffix>lock</mat-icon>
+      <input type="password" matInput formControlName="rpassword" />
+    </mat-form-field>
+  </form>
+</main>
+
+<footer class="dialog-actions">
+  <div class="dialog-action-row">
+    <button mat-button class="btn btn-secondary">
+      <span>Clear</span>
+    </button>
+    <button mat-button class="btn btn-primary">
+      <span>Sign Up</span>
+    </button>
+  </div>
+  <div class="dialog-action-row">
+    <p>
+      Already have an account?
+      <a class="link" href="javascript:void(0)" (click)="signIn()">
+        <span>Sign in here</span>
+      </a>
+    </p>
+  </div>
+</footer>
