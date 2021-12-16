@@ -1,24 +1,67 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { Blog } from '../definitions';
+import { of, Subject } from 'rxjs';
+import { Blog, Responses } from '../definitions';
 import { GenericAPIResponse } from '../../../../../../shared/interfaces/responses.interface';
+import { ApiService } from './api.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticlesService {
-  constructor() {}
+  private updateEvent = new Subject<void>();
+  public onUpdate = this.updateEvent.asObservable();
 
-  public addArticle(article: Blog.ArticleStub) {}
+  constructor(private api: ApiService) {}
 
-  public editArticle(articleId: number, article: Blog.ArticleStub) {}
+  public addArticle(article: Blog.ArticleStub) {
+    const url = `articles/add`;
+    return this.api.post<Responses.ActionState>(url, article).pipe(
+      tap((res) => {
+        if (res.error) return;
+        this.updateEvent.next();
+      })
+    );
+  }
 
-  public recoverArticle(articleId: number) {}
+  public editArticle(articleId: number, article: Blog.ArticleStub) {
+    const url = `articles/${articleId}/edit`;
+    return this.api.post<Responses.ActionState>(url, article).pipe(
+      tap((res) => {
+        if (res.error) return;
+        this.updateEvent.next();
+      })
+    );
+  }
 
-  public deleteArticle(articleId: number) {}
+  public recoverArticle(articleId: number) {
+    const url = `articles/${articleId}/recover`;
+    return this.api.post<Responses.ActionState>(url, {}).pipe(
+      tap((res) => {
+        if (res.error) return;
+        this.updateEvent.next();
+      })
+    );
+  }
 
-  public duplicateArticle(article: Blog.Article) {
-    return of([1, 2, 3]);
+  public deleteArticle(articleId: number) {
+    const url = `articles/${articleId}/delete`;
+    return this.api.delete<Responses.ActionState>(url).pipe(
+      tap((res) => {
+        //if (res.error) return;
+        this.updateEvent.next();
+      })
+    );
+  }
+
+  public duplicateArticle(articleId: number) {
+    const url = `articles/${articleId}/duplicate`;
+    return this.api.post<Responses.ActionState>(url, {}).pipe(
+      tap((res) => {
+        if (res.error) return;
+        this.updateEvent.next();
+      })
+    );
   }
 
   public getAllArticles() {

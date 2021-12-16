@@ -65,3 +65,12 @@ export namespace Blog {
 }
 
 export namespace Auth {}
+
+export namespace Responses {
+  export interface ActionState {
+    error: string;
+    success: boolean;
+    errorMessage: string;
+    successMessage: string;
+  }
+}

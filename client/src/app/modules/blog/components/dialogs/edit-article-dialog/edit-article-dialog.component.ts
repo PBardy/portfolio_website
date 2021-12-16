@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-article-dialog',
@@ -15,7 +16,10 @@ export class EditArticleDialogComponent implements OnInit {
     caption: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<EditArticleDialogComponent>
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,5 +33,14 @@ export class EditArticleDialogComponent implements OnInit {
 
   public get markdown(): FormControl {
     return this.form.controls.markdown as FormControl;
+  }
+
+  public clear(): void {
+    this.dialogRef.close(false);
+  }
+
+  public save(): void {
+    // add save logic
+    this.dialogRef.close(true);
   }
 }

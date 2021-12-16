@@ -2,6 +2,7 @@ import {
   Component,
   HostListener,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -10,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 import { Auth, Blog } from '../../../definitions';
 import { ArticlesService } from '../../../services/articles.service';
 import { AuthState } from '../../../services/auth.service';
@@ -21,7 +24,7 @@ import { EditArticleDialogComponent } from '../../dialogs/edit-article-dialog/ed
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.scss'],
 })
-export class ArticleCardComponent implements OnInit {
+export class ArticleCardComponent implements OnInit, OnDestroy {
   @ViewChild(MatMenuTrigger)
   public menu: MatMenuTrigger;
 
@@ -38,6 +41,8 @@ export class ArticleCardComponent implements OnInit {
   public menuX: number = 0;
   public menuY: number = 0;
 
+  private subscriptions = new Subscription();
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -46,6 +51,10 @@ export class ArticleCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
   @HostListener('dblclick', ['$event'])
   public onDoubleLeftClick(event: MouseEvent): void {
@@ -70,13 +79,34 @@ export class ArticleCardComponent implements OnInit {
   }
 
   public duplicateArticle(): void {
-    this.articles.duplicateArticle(this.data).subscribe(
+    this.articles.duplicateArticle(this.data.id).subscribe(
       (res) => {
-        console.log(res);
+        if (res.success) {
+          this.snackbar.open('The article was duplicated', 'Close', {
+            duration: 5000,
+            panelClass: 'alert-success',
+          });
+        } else {
+          this.onDuplicationError(res.data);
+        }
       },
       (err) => {
-        this.snackbar.open('Could not replicate article');
+        this.onDuplicationError(err);
       }
+    );
+  }
+
+  private onDuplicationError(err: any): void {
+    this.subscriptions.add(
+      this.snackbar
+        .open('Could not replicate article', 'Try Again', {
+          duration: 5000,
+          panelClass: 'alert-error',
+        })
+        .onAction()
+        .subscribe(() => {
+          this.duplicateArticle();
+        })
     );
   }
 
@@ -85,11 +115,70 @@ export class ArticleCardComponent implements OnInit {
   }
 
   public editArticle(): void {
-    this.dialog.open(EditArticleDialogComponent, { data: this.data });
+    this.subscriptions.add(
+      this.dialog
+        .open(EditArticleDialogComponent, { data: this.data })
+        .afterClosed()
+        .pipe(takeWhile((data) => !!data))
+        .subscribe(() => {
+          this.snackbar.open('Article was successfully updated', 'Close', {
+            duration: 5000,
+            panelClass: 'alert-success',
+          });
+        })
+    );
   }
 
   public deleteArticle(): void {
-    this.dialog.open(DeleteArticleDialogComponent, { data: this.data });
+    this.subscriptions.add(
+      this.dialog
+        .open(DeleteArticleDialogComponent, { data: this.data })
+        .afterClosed()
+        .pipe(takeWhile((data) => !!data))
+        .subscribe(() => {
+          this.snackbar
+            .open('Article was successfully deleted.', 'Undo', {
+              duration: 5000,
+              panelClass: 'alert-error',
+            })
+            .onAction()
+            .subscribe(() => {
+              this.recoverArticle();
+            });
+        })
+    );
+  }
+
+  public recoverArticle(): void {
+    this.articles.recoverArticle(this.data.id).subscribe(
+      (res) => {
+        if (res.success) {
+          this.snackbar.open('The article was recovered', 'Close', {
+            duration: 5000,
+            panelClass: 'alert-success',
+          });
+        } else {
+          this.onRecoveryError(res.data);
+        }
+      },
+      (err) => {
+        this.onRecoveryError(err);
+      }
+    );
+  }
+
+  private onRecoveryError(err: any): void {
+    this.subscriptions.add(
+      this.snackbar
+        .open('The article could not be recovered', 'Try Again', {
+          duration: 5000,
+          panelClass: 'alert-warning',
+        })
+        .onAction()
+        .subscribe(() => {
+          this.recoverArticle();
+        })
+    );
   }
 
   public readMore(): void {

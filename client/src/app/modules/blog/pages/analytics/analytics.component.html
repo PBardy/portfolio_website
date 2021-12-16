@@ -1,11 +1,50 @@
-<mat-drawer-container>
-  <mat-drawer></mat-drawer>
+<mat-drawer-container class="sidenav-container" hasBackdrop="false">
+  <mat-drawer class="sidenav" mode="side" [opened]="true">
+    <header class="sidenav-header">
+      <h3>Material Blog</h3>
+    </header>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <h3 matSubheader>Creater Options</h3>
+      <mat-list-item>
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span>Dashboard</span>
+      </mat-list-item>
+      <mat-list-item (click)="addArticle()">
+        <mat-icon mat-list-icon>add</mat-icon>
+        <span>Add Article</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/blog/analytics">
+        <mat-icon mat-list-icon>show_chart</mat-icon>
+        <span>Analytics</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Categories</h3>
+      <mat-list-item>
+        <mat-icon mat-list-icon>groups</mat-icon>
+        <span>Users</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>library_books</mat-icon>
+        <span>Authors</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>newspaper</mat-icon>
+        <span>Articles</span>
+      </mat-list-item>
+    </mat-nav-list>
+    <footer class="sidenav-footer">
+      <button mat-icon-button (click)="settings()">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </footer>
+  </mat-drawer>
   <mat-drawer-content>
     <mat-toolbar class="toolbar">
       <mat-toolbar-row class="toolbar-row">
         <div class="toolbar-group">
           <button mat-icon-button routerLink="/blog">
-            <mat-icon>home</mat-icon>
+            <mat-icon>menu</mat-icon>
           </button>
           <h2>Analytics</h2>
         </div>

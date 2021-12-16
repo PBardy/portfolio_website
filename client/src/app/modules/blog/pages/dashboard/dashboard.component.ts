@@ -3,7 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 import { EditArticleDialogComponent } from '../../components/dialogs/edit-article-dialog/edit-article-dialog.component';
 import { SearchDialogComponent } from '../../components/dialogs/search-dialog/search-dialog.component';
 import { SettingsDialogComponent } from '../../components/dialogs/settings-dialog/settings-dialog.component';
@@ -38,6 +40,7 @@ export class DashboardComponent implements OnInit {
     private dialog: MatDialog,
     private hotkeys: Hotkeys,
     private auth: AuthService,
+    private snackbar: MatSnackBar,
     private articlesService: ArticlesService
   ) {}
 
@@ -96,7 +99,13 @@ export class DashboardComponent implements OnInit {
       this.dialog
         .open(EditArticleDialogComponent)
         .afterClosed()
-        .subscribe((data) => {})
+        .pipe(takeWhile((data) => !!data))
+        .subscribe(() => {
+          this.snackbar.open('Article was successfully added.', 'Close', {
+            //duration: 3000,
+            panelClass: 'alert-success',
+          });
+        })
     );
   }
 

@@ -52,3 +52,30 @@ p {
   color: #fff;
   background-color: var(--light-blue);
 }
+
+.alert-success.mat-snack-bar-container {
+  color: #fff;
+  background-color: green;
+
+  .mat-button-wrapper {
+    color: #fff;
+  }
+}
+
+.alert-warning.mat-snack-bar-container {
+  color: #fff;
+  background-color: yellow;
+
+  .mat-button-wrapper {
+    color: #fff;
+  }
+}
+
+.alert-error.mat-snack-bar-container {
+  color: #fff;
+  background-color: red;
+
+  .mat-button-wrapper {
+    color: #fff;
+  }
+}
