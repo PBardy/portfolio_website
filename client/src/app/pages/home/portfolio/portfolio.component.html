@@ -1,0 +1,14 @@
+<section class="section portfolio">
+  <div class="section-container">
+    <div class="section-title-container">
+      <h3>
+        <div class="line"></div>
+        <span>Take a look at</span>
+      </h3>
+      <h2>My Projects</h2>
+    </div>
+    <div class="section-content">
+      <app-project [data]="p" *ngFor="let p of projects"></app-project>
+    </div>
+  </div>
+</section>

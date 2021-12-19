@@ -22,7 +22,7 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
 h1,
@@ -34,18 +34,21 @@ h6 {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
 ul,
 ol,
 li,
 p {
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .btn {
   width: 100%;
   padding: 2rem;
   border-radius: 4px;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .btn-primary {

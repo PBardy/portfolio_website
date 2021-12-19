@@ -1,0 +1,36 @@
+<section class="section contact">
+  <div class="section-container">
+    <div class="section-title-container">
+      <h3>
+        <div class="line"></div>
+        <span>Say Hello</span>
+      </h3>
+      <h2>Contact</h2>
+    </div>
+    <div class="section-content">
+      <form [formGroup]="contactForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" />
+          <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email" />
+          <mat-error>This field is required.</mat-error>
+          <mat-error>Email is invalid.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Subject</mat-label>
+          <input matInput type="text" formControlName="subject" />
+          <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</section>

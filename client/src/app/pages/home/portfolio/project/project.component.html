@@ -1,0 +1,12 @@
+<div class="project-container">
+  <div class="project-thumbnail"></div>
+  <div class="project-details">
+    <h2>{{ data.title }}</h2>
+    <p>{{ data.description }}</p>
+    <mat-chip-list>
+      <mat-chip *ngFor="let tag of data.tags">
+        <span>{{ tag }}</span>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

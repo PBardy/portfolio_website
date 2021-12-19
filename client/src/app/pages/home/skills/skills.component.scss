@@ -1,0 +1,33 @@
+@import "../home-shared.scss";
+
+// SECTION - SKILLS
+.section.skills .section-content {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.section.skills .skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem 0;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  -webkit-box-shadow: 0px 4px 6px rgb(134 151 168 / 10%);
+  box-shadow: 0px 4px 6px rgb(134 151 168 / 10%);
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.section.skills .skill-card span {
+  font-size: 14px;
+}

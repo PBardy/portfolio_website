@@ -1,0 +1,27 @@
+@import "../home-shared.scss";
+
+form {
+  display: grid;
+  grid-template-areas: "a b" "c c" "d d";
+  grid-gap: 0 1rem;
+}
+
+form .mat-form-field:nth-child(1) {
+  grid-area: a;
+}
+
+form .mat-form-field:nth-child(2) {
+  grid-area: b;
+}
+
+form .mat-form-field:nth-child(3) {
+  grid-area: c;
+}
+
+form .mat-form-field:nth-child(4) {
+  grid-area: d;
+}
+
+::ng-deep .mat-input-underline {
+  display: none;
+}

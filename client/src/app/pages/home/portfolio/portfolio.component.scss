@@ -1,0 +1,8 @@
+@import "../home-shared.scss";
+
+.section-content {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+  grid-gap: 3rem 0;
+}

@@ -1,0 +1,13 @@
+.project-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  grid-gap: 0 1rem;
+}
+
+.project-thumbnail {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+}
