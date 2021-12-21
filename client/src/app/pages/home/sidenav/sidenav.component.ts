@@ -10,5 +10,10 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public goTo(section: string): void {}
+  public takeATour(): void {}
+
+  public scrollIntoView(element: string): void {
+    const node = document.getElementsByClassName(element)[0];
+    node?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

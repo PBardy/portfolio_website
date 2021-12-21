@@ -54,6 +54,7 @@ export namespace Blog {
     markdown: string;
     thumbnail?: string;
     caption?: string;
+    tags?: string[];
   }
   export interface Article extends ArticleStub, Navigable {
     id: number;

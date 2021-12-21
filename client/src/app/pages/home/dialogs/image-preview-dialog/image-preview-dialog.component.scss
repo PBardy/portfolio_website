@@ -1,0 +1,17 @@
+@import "material";
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--light-blue);
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  gap: 0 1rem;
+}
+
+.dialog-content {
+  min-width: 512px;
+  min-height: 512px;
+  background-color: black;
+}

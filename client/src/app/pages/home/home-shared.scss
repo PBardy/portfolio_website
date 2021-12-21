@@ -44,3 +44,17 @@
   font-size: 26px;
   text-transform: uppercase;
 }
+
+.btn {
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 30px;
+  padding: 0.25rem 3rem;
+  width: initial;
+}
+
+.pancake {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}

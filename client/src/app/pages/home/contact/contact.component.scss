@@ -1,9 +1,10 @@
+@import "material";
 @import "../home-shared.scss";
 
 form {
   display: grid;
-  grid-template-areas: "a b" "c c" "d d";
-  grid-gap: 0 1rem;
+  grid-template-areas: "a b" "c c" "d d" "e e";
+  grid-gap: 0.5rem;
 }
 
 form .mat-form-field:nth-child(1) {
@@ -22,6 +23,14 @@ form .mat-form-field:nth-child(4) {
   grid-area: d;
 }
 
-::ng-deep .mat-input-underline {
-  display: none;
+form textarea {
+  min-height: 150px;
+}
+
+button {
+  align-self: center;
+  justify-self: center;
+  grid-area: e;
+  width: 50%;
+  margin-top: 2rem;
 }

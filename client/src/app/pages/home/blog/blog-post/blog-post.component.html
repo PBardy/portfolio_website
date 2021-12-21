@@ -1,0 +1,25 @@
+<div class="blog-post-container">
+  <div class="blog-post-thumbnail-container">
+    <img src="" alt="" />
+  </div>
+  <div class="blog-post-content">
+    <div class="blog-post-title-container">
+      <h3>{{ data.title }}</h3>
+      <button mat-icon-button>
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+    </div>
+    <p>{{ data.description }}</p>
+    <p>
+      By
+      <a [href]="authorURL()"> {{ authorName() }} </a>, published on
+      <span>{{ data.updated_at | date: "dd-MM-yyyy" }}</span> at
+      <span>{{ data.updated_at | date: "hh:mm" }}</span>
+    </p>
+    <mat-chip-list>
+      <mat-chip *ngFor="let tag of data.tags">
+        <span>{{ tag }}</span>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

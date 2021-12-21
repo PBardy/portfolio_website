@@ -5,7 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  MatFormFieldModule,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
@@ -46,6 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [],
@@ -90,6 +95,7 @@ import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contentedit
     MatSortModule,
     MatTableModule,
     ContenteditableValueAccessorModule,
+    initializeApp(environment.firebaseConfig),
   ],
   exports: [
     FormsModule,
@@ -131,6 +137,12 @@ import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contentedit
     MatSortModule,
     MatTableModule,
     ContenteditableValueAccessorModule,
+  ],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' },
+    },
   ],
 })
 export class SharedModule {}

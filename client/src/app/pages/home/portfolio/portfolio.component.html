@@ -8,7 +8,44 @@
       <h2>My Projects</h2>
     </div>
     <div class="section-content">
-      <app-project [data]="p" *ngFor="let p of projects"></app-project>
+      <p>
+        Below is a shortlist of the projects I have worked on or contributed to
+        over the years. I've experimented with lots of different languages,
+        technologies and frameworks, so if your looking for something in
+        particular try using the tag filters.
+      </p>
+      <div class="search-container">
+        <mat-form-field>
+          <mat-label>Search by title or keyword</mat-label>
+          <mat-icon matSuffix>search</mat-icon>
+          <input matInput type="text" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Order By</mat-label>
+          <mat-select>
+            <mat-option>Date Created (asc)</mat-option>
+            <mat-option>Date Created (dsc)</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Filter By</mat-label>
+          <mat-select multiple>
+            <ng-container *ngFor="let tag of tags">
+              <mat-option [value]="tag.toUpperCase()">
+                <span>{{ tag }}</span>
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="pancake">
+        <app-project [data]="p" *ngFor="let p of projects"></app-project>
+      </div>
+      <div class="projects-actions">
+        <button mat-button class="btn btn-primary">
+          <span>View All</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Project } from 'src/app/definitions';
 
 @Component({
@@ -7,11 +8,23 @@ import { Project } from 'src/app/definitions';
   styleUrls: ['./portfolio.component.scss'],
 })
 export class PortfolioComponent implements OnInit {
+  public searchForm = new FormGroup({
+    searchTerm: new FormControl(''),
+    orderBy: new FormControl(''),
+    filterBy: new FormControl(['HTML', 'CSS', 'JavaScript']),
+  });
+
   public projects: Project[] = projects;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchForm.controls.filterBy.patchValue(this.tags);
+  }
+
+  public get tags(): string[] {
+    return Array.from(new Set(this.projects.map((p) => p.tags).flat()));
+  }
 }
 
 const project: Project = {

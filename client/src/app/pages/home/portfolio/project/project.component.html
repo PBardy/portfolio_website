@@ -1,7 +1,24 @@
 <div class="project-container">
-  <div class="project-thumbnail"></div>
+  <div class="project-thumbnail">
+    <img [src]="data.thumbnail" [alt]="data.caption" />
+    <div class="overlay" (click)="openImagePreview()">
+      <span>Expand</span>
+    </div>
+  </div>
   <div class="project-details">
-    <h2>{{ data.title }}</h2>
+    <div class="project-title-container">
+      <h2>{{ data.title }}</h2>
+      <button
+        mat-icon-button
+        matTooltip="View Source Code"
+        (click)="openSourceCode()"
+      >
+        <mat-icon>code</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="View Demo" (click)="openDemo()">
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+    </div>
     <p>{{ data.description }}</p>
     <mat-chip-list>
       <mat-chip *ngFor="let tag of data.tags">

@@ -18,9 +18,11 @@ import { ContactComponent } from './pages/home/contact/contact.component';
 import { FooterComponent } from './pages/home/footer/footer.component';
 import { SkillComponent } from './pages/home/skills/skill/skill.component';
 import { ProjectComponent } from './pages/home/portfolio/project/project.component';
+import { ImagePreviewDialogComponent } from './pages/home/dialogs/image-preview-dialog/image-preview-dialog.component';
+import { BlogPostComponent } from './pages/home/blog/blog-post/blog-post.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, HomeComponent, SidenavComponent, HeroComponent, AboutComponent, SkillsComponent, PortfolioComponent, BlogComponent, ContactComponent, FooterComponent, SkillComponent, ProjectComponent],
+  declarations: [AppComponent, PageNotFoundComponent, HomeComponent, SidenavComponent, HeroComponent, AboutComponent, SkillsComponent, PortfolioComponent, BlogComponent, ContactComponent, FooterComponent, SkillComponent, ProjectComponent, ImagePreviewDialogComponent, BlogPostComponent],
   imports: [
     BlogModule,
     BrowserModule,

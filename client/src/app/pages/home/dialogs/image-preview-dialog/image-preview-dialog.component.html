@@ -1,0 +1,10 @@
+<header class="dialog-header">
+  <h3>Image Preview</h3>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</header>
+
+<main class="dialog-content">
+  <img [src]="data.thumbnail" [alt]="data.caption" />
+</main>

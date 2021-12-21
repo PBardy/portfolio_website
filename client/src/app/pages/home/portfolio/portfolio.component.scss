@@ -1,8 +1,36 @@
 @import "../home-shared.scss";
 
 .section-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-container {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: 1fr;
+  grid-gap: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.projects {
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: 1fr;
   grid-gap: 3rem 0;
+}
+
+.projects-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.projects-actions .btn {
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 30px;
+  padding: 0.25rem 3rem;
+  width: initial;
 }
